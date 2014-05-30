@@ -34,7 +34,7 @@ class LinkedList
         int getNoOfNodes();
 
         void displayAllNodes();
-        bool checkIfDataExist();
+        bool checkIfDataExist(int);
     private:
         int dataCmp( int, int );
         void displayNode( Node* );
@@ -202,7 +202,15 @@ void LinkedList::displayAllNodes()
     return;
 }
 
-bool LinkedList::checkIfDataExist(){
+bool LinkedList::checkIfDataExist(int value){
+    cout << "Looking For " << value << endl;
+    Node *pCur = head.headPtr;
+    while ( pCur ) {
+        if ( pCur -> data == value){
+            return true;
+        }
+        pCur = pCur -> next;
+    }
     return false; 
 }
 
@@ -312,7 +320,8 @@ void processChoice( int choice, LinkedList& list )
             break;
         case 8: list.displayAllNodes();
             break;
-        case 9: if ( !list.checkIfDataExist() ){
+        case 9: data = getData();
+                if ( !list.checkIfDataExist(data) ){
                     cout << "NO" << endl;
                 }else{
                     cout << "YES" << endl;
